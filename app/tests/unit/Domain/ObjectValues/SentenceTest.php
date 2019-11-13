@@ -19,15 +19,15 @@ class SentenceTest extends TestCase
 
         $actual = $sentence->split(2);
         $this->assertCount(4, $actual);
-        $this->assertEquals("あい", $actual[0]->getChars());
-        $this->assertEquals("いう", $actual[1]->getChars());
-        $this->assertEquals("うえ", $actual[2]->getChars());
-        $this->assertEquals("えお", $actual[3]->getChars());
+        $this->assertEquals("あい", $actual[0]->chars());
+        $this->assertEquals("いう", $actual[1]->chars());
+        $this->assertEquals("うえ", $actual[2]->chars());
+        $this->assertEquals("えお", $actual[3]->chars());
 
         $actual = $sentence->split(3);
         $this->assertCount(3, $actual);
-        $this->assertEquals("あいう", $actual[0]->getChars());
-        $this->assertEquals("いうえ", $actual[1]->getChars());
-        $this->assertEquals("うえお", $actual[2]->getChars());
+        $this->assertEquals("あいう", $actual[0]->chars());
+        $this->assertEquals("いうえ", $actual[1]->chars());
+        $this->assertEquals("うえお", $actual[2]->chars());
     }
 }

@@ -31,7 +31,7 @@ class NGram
         $this->originIdx = $originIdx;
     }
 
-    public function getChars()
+    public function chars()
     {
         return $this->chars;
     }
