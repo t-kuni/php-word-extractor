@@ -56,16 +56,18 @@ class TextSummarizer implements ITextCounter
     }
 
     public function summary() {
-        $summary = $this->summary->toArray();
+//        $summary = $this->summary->toArray();
 
-        usort($summary, function(SummaryDetail $a, SummaryDetail $b) {
-            if ($b->count() - $a->count() !== 0) {
-                return $b->count() - $a->count();
-            } else {
-                return strnatcmp($a->chars(), $b->chars());
-            }
-        });
+//        usort($summary, function(SummaryDetail $a, SummaryDetail $b) {
+//            if ($b->appearanceRate() - $a->appearanceRate() !== 0) {
+//                return $b->appearanceRate() - $a->appearanceRate();
+//            } else {
+//                return strnatcmp($a->chars(), $b->chars());
+//            }
+//        });
 
-        return $summary;
+
+
+        return $this->summary;
     }
 }

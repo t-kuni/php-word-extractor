@@ -62,6 +62,11 @@ trends.google.com/trends/explore…",
 
         $actual = $interactor->extract($sentences);
 
+        $output = fopen('/app/test.csv', 'w');
+        foreach ($actual as $one) {
+            fputcsv($output, $one);
+        }
+
         $expect = [
             "PhpStorm",
             "MySQL",

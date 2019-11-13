@@ -15,7 +15,7 @@ class TextSummarizerTest extends TestCase
      */
     public function getSummary_()
     {
-        $origin   = "あいうえおうえお";
+        $origin   = "あいうえおうえおえ";
         $sentence = new Sentence($origin);
         $ngrams   = $sentence->split(2);
 
