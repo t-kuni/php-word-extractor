@@ -16,6 +16,10 @@ class Sentence
         $this->body = $body;
     }
 
+    public function body() {
+        return $this->body;
+    }
+
     public function split(int $length): array
     {
         $ngrams = [];

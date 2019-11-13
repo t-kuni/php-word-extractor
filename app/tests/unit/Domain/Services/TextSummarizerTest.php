@@ -24,29 +24,26 @@ class TextSummarizerTest extends TestCase
         }
         $actual = $counter->summary();
 
-        $expect = [
-            [
-                'chars'  => "うえ",
-                'count' => 2,
-            ],
-            [
-                'chars'  => "えお",
-                'count' => 2,
-            ],
-            [
-                'chars'  => "あい",
-                'count' => 1,
-            ],
-            [
-                'chars'  => "いう",
-                'count' => 1,
-            ],
-            [
-                'chars'  => "おう",
-                'count' => 1
-            ],
-        ];
+        $this->assertCount(5, $actual);
 
-        $this->assertEquals($expect, $actual);
+        $this->assertEquals("うえ", $actual[0]->chars());
+        $this->assertEquals(2, $actual[0]->count());
+        $this->assertCount(1, $actual[0]->sentenceList());
+
+        $this->assertEquals("えお", $actual[1]->chars());
+        $this->assertEquals(2, $actual[1]->count());
+        $this->assertCount(1, $actual[1]->sentenceList());
+
+        $this->assertEquals("あい", $actual[2]->chars());
+        $this->assertEquals(1, $actual[2]->count());
+        $this->assertCount(1, $actual[2]->sentenceList());
+
+        $this->assertEquals("いう", $actual[3]->chars());
+        $this->assertEquals(1, $actual[3]->count());
+        $this->assertCount(1, $actual[3]->sentenceList());
+
+        $this->assertEquals("おう", $actual[4]->chars());
+        $this->assertEquals(1, $actual[4]->count());
+        $this->assertCount(1, $actual[4]->sentenceList());
     }
 }

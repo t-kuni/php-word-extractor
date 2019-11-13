@@ -5,13 +5,24 @@ namespace TKuni\PhpWordExtractor\Domain\Services;
 
 
 use TKuni\PhpWordExtractor\Domain\ObjectValues\NGram;
-use TKuni\PhpWordExtractor\Domain\ObjectValues\SummarizedElement;
+use TKuni\PhpWordExtractor\Domain\ObjectValues\SentenceList;
+use TKuni\PhpWordExtractor\Domain\ObjectValues\Summary;
+use TKuni\PhpWordExtractor\Domain\ObjectValues\SummaryDetail;
 use TKuni\PhpWordExtractor\Domain\Services\interfaces\ITextCounter;
 
 class TextSummarizer implements ITextCounter
 {
-    private $summary = [];
+    /**
+     * @var Summary
+     */
+    private $summary;
+
     private $indexes = [];
+
+    public function __construct()
+    {
+        $this->summary = new Summary();
+    }
 
     public function addNGram(NGram $ngram) {
         $chars = $ngram->chars();
@@ -23,22 +34,27 @@ class TextSummarizer implements ITextCounter
         }
 
         if ($index !== null) {
-            $this->summary[$index]['count']++;
+            $this->summary[$index] = $this->summary[$index]->increment($ngram->sentence(), 1);
         } else {
             $newIndex = count($this->summary);
             $this->indexes[$chars] = $newIndex;
-            $this->summary[$newIndex] = new SummarizedElement($chars, 1, [$ngram->sentence()], 1);
+            $this->summary[$newIndex] = new SummaryDetail(
+                $chars,
+                1,
+                new SentenceList([$ngram->sentence()]),
+                1
+            );
         }
     }
 
     public function summary() {
-        $summary = $this->summary;
+        $summary = $this->summary->toArray();
 
-        usort($summary, function($a, $b) {
-            if ($b['count'] - $a['count'] !== 0) {
-                return $b['count'] - $a['count'];
+        usort($summary, function(SummaryDetail $a, SummaryDetail $b) {
+            if ($b->count() - $a->count() !== 0) {
+                return $b->count() - $a->count();
             } else {
-                return strnatcmp($a['chars'], $b['chars']);
+                return strnatcmp($a->chars(), $b->chars());
             }
         });
 
