@@ -15,7 +15,7 @@ class NGram
      */
     private $length;
     /**
-     * @var string
+     * @var Sentence
      */
     private $origin;
     /**
@@ -23,7 +23,7 @@ class NGram
      */
     private $originIdx;
 
-    public function __construct(string $chars, int $length, string $origin, int $originIdx)
+    public function __construct(string $chars, int $length, Sentence $origin, int $originIdx)
     {
         $this->chars     = $chars;
         $this->length    = $length;

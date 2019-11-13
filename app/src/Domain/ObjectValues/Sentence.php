@@ -24,10 +24,9 @@ class Sentence
 
         for ($i = 0; $i <= $tailIdx; $i++) {
             $chars     = mb_substr($this->body, $i, $length);
-            $origin    = $this->body;
             $originIdx = $i;
 
-            $ngrams[] = new NGram($chars, $length, $origin, $originIdx);
+            $ngrams[] = new NGram($chars, $length, $this, $originIdx);
         }
 
         return $ngrams;

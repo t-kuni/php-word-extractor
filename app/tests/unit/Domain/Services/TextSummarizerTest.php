@@ -7,7 +7,7 @@ use TKuni\PhpWordExtractor\Domain\ObjectValues\NGram;
 use TKuni\PhpWordExtractor\Domain\ObjectValues\Sentence;
 use TKuni\PhpWordExtractor\Domain\Services\interfaces\ITextCounter;
 
-class TextCounterTest extends TestCase
+class TextSummarizerTest extends TestCase
 {
     /**
      * @test

@@ -11,7 +11,7 @@ use TKuni\PhpCliAppTemplate\Infrastructure\ExampleRepository;
 use TKuni\PhpWordExtractor\Application\UseCases\interfaces\IWordExtractInteractor;
 use TKuni\PhpWordExtractor\Application\UseCases\WordExtractInteractor;
 use TKuni\PhpWordExtractor\Domain\Services\interfaces\ITextCounter;
-use TKuni\PhpWordExtractor\Domain\Services\TextCounter;
+use TKuni\PhpWordExtractor\Domain\Services\TextSummarizer;
 
 require_once __DIR__ . '/vendor/autoload.php';
 
@@ -36,4 +36,4 @@ $app->singleton(LoggerInterface::class, function() {
 });
 $app->bind(IExampleRepository::class, ExampleRepository::class);
 $app->bind(IWordExtractInteractor::class, WordExtractInteractor::class);
-$app->bind(ITextCounter::class, TextCounter::class);
+$app->bind(ITextCounter::class, TextSummarizer::class);

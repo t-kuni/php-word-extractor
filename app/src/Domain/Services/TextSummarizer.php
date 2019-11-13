@@ -7,7 +7,7 @@ namespace TKuni\PhpWordExtractor\Domain\Services;
 use TKuni\PhpWordExtractor\Domain\ObjectValues\NGram;
 use TKuni\PhpWordExtractor\Domain\Services\interfaces\ITextCounter;
 
-class TextCounter implements ITextCounter
+class TextSummarizer implements ITextCounter
 {
     private $summary = [];
     private $indexes = [];
