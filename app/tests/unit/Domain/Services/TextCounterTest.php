@@ -25,11 +25,26 @@ class TextCounterTest extends TestCase
         $actual = $counter->summary();
 
         $expect = [
-            "あい" => 1,
-            "いう" => 1,
-            "うえ" => 2,
-            "えお" => 2,
-            "おう" => 1
+            [
+                'chars'  => "うえ",
+                'count' => 2,
+            ],
+            [
+                'chars'  => "えお",
+                'count' => 2,
+            ],
+            [
+                'chars'  => "あい",
+                'count' => 1,
+            ],
+            [
+                'chars'  => "いう",
+                'count' => 1,
+            ],
+            [
+                'chars'  => "おう",
+                'count' => 1
+            ],
         ];
 
         $this->assertEquals($expect, $actual);

@@ -1,3 +1,11 @@
+1～10文字のNGramを作る
+文字の出力回数をカウントする
+単語の定義
+・出現頻度が高い
+・出現する文書の数／総文章数　が低い
+全ての文章に出現
+カウントの多い単語を
+
 # About
 
 This repository is project template for PHP CLI application.

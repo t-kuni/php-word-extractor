@@ -6,7 +6,7 @@ namespace Tests\unit\Application\UseCases;
 use PHPUnit\Framework\TestCase;
 use TKuni\PhpWordExtractor\Application\UseCases\interfaces\IWordExtractInteractor;
 
-class WordExtractInteractor extends TestCase
+class WordExtractInteractorTest extends TestCase
 {
     /**
      * @test
