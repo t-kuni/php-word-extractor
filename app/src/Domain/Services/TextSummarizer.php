@@ -5,6 +5,7 @@ namespace TKuni\PhpWordExtractor\Domain\Services;
 
 
 use TKuni\PhpWordExtractor\Domain\ObjectValues\NGram;
+use TKuni\PhpWordExtractor\Domain\ObjectValues\SummarizedElement;
 use TKuni\PhpWordExtractor\Domain\Services\interfaces\ITextCounter;
 
 class TextSummarizer implements ITextCounter
@@ -26,10 +27,7 @@ class TextSummarizer implements ITextCounter
         } else {
             $newIndex = count($this->summary);
             $this->indexes[$chars] = $newIndex;
-            $this->summary[$newIndex] = [
-                'chars' => $chars,
-                'count' => 1,
-            ];
+            $this->summary[$newIndex] = new SummarizedElement($chars, 1, [$ngram->sentence()], 1);
         }
     }
 

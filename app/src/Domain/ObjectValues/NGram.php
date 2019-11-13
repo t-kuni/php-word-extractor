@@ -17,22 +17,27 @@ class NGram
     /**
      * @var Sentence
      */
-    private $origin;
+    private $sentence;
     /**
      * @var int
      */
     private $originIdx;
 
-    public function __construct(string $chars, int $length, Sentence $origin, int $originIdx)
+    public function __construct(string $chars, int $length, Sentence $sentence, int $originIdx)
     {
         $this->chars     = $chars;
         $this->length    = $length;
-        $this->origin    = $origin;
+        $this->sentence  = $sentence;
         $this->originIdx = $originIdx;
     }
 
     public function chars()
     {
         return $this->chars;
+    }
+
+    public function sentence() : Sentence
+    {
+        return $this->sentence;
     }
 }
