@@ -4,6 +4,7 @@
 namespace TKuni\PhpWordExtractor\Domain\Services;
 
 
+use phpDocumentor\Reflection\Types\Integer;
 use TKuni\PhpWordExtractor\Domain\ObjectValues\NGram;
 use TKuni\PhpWordExtractor\Domain\ObjectValues\SentenceList;
 use TKuni\PhpWordExtractor\Domain\ObjectValues\Summary;
@@ -18,10 +19,15 @@ class TextSummarizer implements ITextCounter
     private $summary;
 
     private $indexes = [];
+    /**
+     * @var int
+     */
+    private $totalSentenceCount;
 
-    public function __construct()
+    public function __construct(int $totalSentenceCount)
     {
-        $this->summary = new Summary();
+        $this->summary            = new Summary();
+        $this->totalSentenceCount = $totalSentenceCount;
     }
 
     public function addNGram(NGram $ngram) {
@@ -34,16 +40,18 @@ class TextSummarizer implements ITextCounter
         }
 
         if ($index !== null) {
-            $this->summary[$index] = $this->summary[$index]->increment($ngram->sentence(), 1);
+            $this->summary[$index] = $this->summary[$index]->increment(
+                $ngram->sentence()
+            )->calcAppearanceRate($this->totalSentenceCount);
         } else {
             $newIndex = count($this->summary);
             $this->indexes[$chars] = $newIndex;
-            $this->summary[$newIndex] = new SummaryDetail(
+            $this->summary[$newIndex] = (new SummaryDetail(
                 $chars,
                 1,
                 new SentenceList([$ngram->sentence()]),
                 1
-            );
+            ))->calcAppearanceRate($this->totalSentenceCount);
         }
     }
 

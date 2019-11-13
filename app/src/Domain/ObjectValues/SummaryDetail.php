@@ -31,13 +31,23 @@ class SummaryDetail
         $this->appearanceRate = $appearanceRate;
     }
 
-    public function increment(Sentence $sentence, float $appearanceRate)
+    public function increment(Sentence $sentence) : SummaryDetail
     {
         return new self(
             $this->chars,
             $this->count + 1,
             $this->sentenceList->addSentenceIfNotExist($sentence),
             $this->appearanceRate
+        );
+    }
+
+    public function calcAppearanceRate(int $totalSentenceCount) : SummaryDetail
+    {
+        return new self(
+            $this->chars,
+            $this->count,
+            $this->sentenceList,
+            count($this->sentenceList) / $totalSentenceCount
         );
     }
 
@@ -51,5 +61,9 @@ class SummaryDetail
 
     public function sentenceList() {
         return $this->sentenceList;
+    }
+
+    public function appearanceRate() {
+        return $this->appearanceRate;
     }
 }
